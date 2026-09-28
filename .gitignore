@@ -1,0 +1,26 @@
+# Streamlit Secrets (NEVER commit real credentials to repository)
+.streamlit/secrets.toml
+
+# Python Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+
+# Python Bytecode & Cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment & Local Configuration
+.env
+.env.local
+.env.*
+
+# IDE & OS Generated Files
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
