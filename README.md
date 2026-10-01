@@ -1,20 +1,21 @@
 # 🎓 Deadline Tracker — AI Academic Deadline Assistant
 
-A streamlined, intelligent Streamlit application designed for students and researchers to track academic deadlines, assignments, exams, projects, and key academic dates using **Google Gemini Vision AI** and **Gmail SMTP**.
+A modern, intelligent Streamlit application designed for students and researchers to track academic deadlines, assignments, exams, projects, and key academic dates using **Google Gemini Vision AI** and **Gmail SMTP**.
 
 ![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.35+-red.svg)
-![Google Gemini](https://img.shields.io/badge/Google%20Gemini-Vision%20AI-orange.svg)
+![Google Gemini](https://img.shields.io/badge/Google%20Gemini-AI-orange.svg)
 
 ---
 
 ## 🌟 Core Features
 
-1. **📸 Vision-Based Deadline Extraction**: Upload syllabi, assignment prompt sheets, exam timetables, or notice board pictures (`.png`, `.jpg`, `.jpeg`, `.webp`). Gemini Vision analyzes the visual text and extracts structured deadline data.
-2. **🛡️ Zero-Hallucination Guardrails**: Prompts explicitly prevent Gemini from inventing or guessing missing dates or information. Missing fields are safely flagged as `"Not Specified"`.
-3. **📊 Visual Deadline Dashboard**: View extracted deadlines organized by course, task name, due date, type (Assignment, Exam, Project, Submission), and specific instructions.
-4. **💬 Context-Aware AI Chat**: Ask follow-up questions (e.g. *"What is my due date for CS101?"*, *"Which project should I prioritize?"*) with Gemini answering directly grounded in your document.
-5. **✉️ Email Summary Dispatcher**: Generate a structured deadline summary and send it directly to your email address via Gmail SMTP.
+1. **📄 Academic Document & PDF Analysis**: Upload syllabi, assignment sheets, timetables, exam schedules, or notices (`PNG`, `JPG`, `JPEG`, `WEBP`, `PDF`). Gemini analyzes document content and extracts structured deadlines.
+2. **🛡️ Zero-Hallucination Guardrails & Local Query Engine**: Fast local lookup engine processes all deadline lookups (exams, assignments, date windows, subject search, next deadline) 100% locally in Python without consuming API quota or hallucinating details.
+3. **📊 Smart Deadline Dashboard**: Displays 5 top metric cards (`📌 Total Deadlines`, `🔴 Overdue`, `🟠 Due Soon`, `📚 Assignments & Projects`, `📝 Exams`), interactive search, category/subject/status filters, and chronological table view.
+4. **⚡ Next Deadline Highlight**: Automatically detects and highlights the earliest upcoming chronological deadline with smart status badges (`🔴 Overdue`, `🟠 Due Today`, `🟡 Due Soon`, `🟢 Upcoming`).
+5. **💬 Interactive AI Deadline Chat**: Natural language chat grounded strictly in your extracted deadline data with 6 quick-action buttons.
+6. **✉️ Gmail Summary Dispatcher**: Generates formatted deadline summaries and sends them directly to your email via Gmail SMTP.
 
 ---
 
@@ -23,10 +24,10 @@ A streamlined, intelligent Streamlit application designed for students and resea
 ```text
 deadline-tracker/
 ├── app.py                          # Main Streamlit web application
-├── prompts.py                      # Centralized system prompts & AI guardrails
+├── prompts.py                      # System prompts & AI guardrails
 ├── requirements.txt                # Required Python dependencies
-├── README.md                       # Comprehensive setup and deployment guide
-├── .gitignore                      # Excludes secrets and temporary runtime files
+├── README.md                       # Setup and deployment guide
+├── .gitignore                      # Excludes secrets & temporary files
 └── .streamlit/
     └── secrets.toml.example        # Configuration template for API keys & SMTP secrets
 ```
@@ -40,7 +41,7 @@ deadline-tracker/
 - A Google Gemini API Key ([Get one here](https://aistudio.google.com/))
 - A Gmail account with 2-Step Verification enabled to generate a **Gmail App Password**.
 
-### 2. Installation steps
+### 2. Installation Steps
 
 ```bash
 # 1. Clone the repository
@@ -68,6 +69,10 @@ Edit `.streamlit/secrets.toml` and fill in your credentials:
 ```toml
 GEMINI_API_KEY = "your_google_gemini_api_key_here"
 
+EMAIL_ADDRESS = "your_email@gmail.com"
+EMAIL_APP_PASSWORD = "your_16_digit_app_password"
+
+# Optional Aliases
 SENDER_EMAIL = "your_email@gmail.com"
 SENDER_PASSWORD = "your_16_digit_app_password"
 SMTP_SERVER = "smtp.gmail.com"
@@ -85,7 +90,7 @@ For email sending via Gmail SMTP:
 2. Navigate to **Security** and ensure **2-Step Verification** is turned ON.
 3. Search for **App Passwords** in the top search bar.
 4. Create a new App Password (name it e.g. `Deadline Tracker App`).
-5. Copy the generated **16-character code** (without spaces) into `SENDER_PASSWORD` in `.streamlit/secrets.toml` or the app's sidebar.
+5. Copy the generated **16-character code** (without spaces) into `EMAIL_APP_PASSWORD` in `.streamlit/secrets.toml` or the app's sidebar.
 
 ---
 
@@ -106,8 +111,8 @@ The application will open automatically in your browser at `http://localhost:850
 1. Push your repository to **GitHub**.
 2. Visit [share.streamlit.io](https://share.streamlit.io/) and log in with GitHub.
 3. Click **"New App"**, select your repository, branch (`main`), and set Main file path to `app.py`.
-4. Click **"Advanced Settings"** or go to your app settings > **Secrets**.
-5. Paste the contents of your `.streamlit/secrets.toml` (with real values) into the Streamlit Cloud Secrets Manager.
+4. Click **"Advanced Settings"** > **Secrets**.
+5. Paste the contents of your `.streamlit/secrets.toml` (with real values) into the Secrets Manager.
 6. Click **Deploy!** 🚀
 
 ---
@@ -115,12 +120,19 @@ The application will open automatically in your browser at `http://localhost:850
 ## 🛠️ Technology Stack
 
 - **Frontend & App Framework**: [Streamlit](https://streamlit.io/)
-- **AI Model**: [Google Gemini API](https://aistudio.google.com/) (`google-genai` / `gemini-2.5-flash`)
-- **Vision & Image Processing**: [Pillow (PIL)](https://python-pillow.org/)
+- **AI Engine**: [Google Gemini API](https://aistudio.google.com/) (`google-genai` / `gemini-3.8-flash`)
+- **Vision & Document Handling**: Pillow (PIL) & PDF Stream Bytes
 - **Email Protocol**: `smtplib` & `email.mime` (Python Standard Library)
+
+---
+
+## 🔗 Live Demo & Links
+
+- **Live App**: *[Streamlit Community Cloud Link Placeholder]*
+- **GitHub Repository**: *[GitHub Repository Link Placeholder]*
 
 ---
 
 ## 📜 License
 
-This project is open-source and intended for academic demonstration and learning purposes.
+This project is open-source and intended for portfolio demonstration and academic learning purposes.
